@@ -55,4 +55,7 @@ const (
 	logClock = "[2/01/2006 15:04:05]"
 )
 
-var statusExit = 1
+var (
+	mutex sync.Mutex
+	statusExit = 1
+)
