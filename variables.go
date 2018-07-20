@@ -1,5 +1,7 @@
 package logger
 
+import "sync"
+
 const (
 	// Cor padrao do shell
 	reset = "\033[0m"
