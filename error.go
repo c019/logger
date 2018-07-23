@@ -9,7 +9,12 @@ import (
 // Error calls Output to print to the standard logger. Arguments are handled in the manner of fmt.Print.
 func Error(args ...interface{}) {
 	mutex.Lock()
-	logStr := fmt.Sprint(red, "[ERROR]", reset)
+	var logStr string
+	if !fileSave {
+		logStr = fmt.Sprint(red, "[ERROR]", reset)
+	} else {
+		logStr = fmt.Sprint("[ERROR]")
+	}
 	logStr += fmt.Sprint(" ")
 	if clockAtive {
 		logStr += fmt.Sprint(time.Now().Format(logClock))
@@ -28,7 +33,12 @@ func Error(args ...interface{}) {
 // Errorf calls Output to print to the standard logger. Arguments are handled in the manner of fmt.Printf.
 func Errorf(format string, args ...interface{}) {
 	mutex.Lock()
-	logStr := fmt.Sprint(red, "[ERROR]", reset)
+	var logStr string
+	if !fileSave {
+		logStr = fmt.Sprint(red, "[ERROR]", reset)
+	} else {
+		logStr = fmt.Sprint("[ERROR]")
+	}
 	logStr += fmt.Sprint(" ")
 	if clockAtive {
 		logStr += fmt.Sprint(time.Now().Format(logClock))
@@ -49,7 +59,12 @@ func Errorf(format string, args ...interface{}) {
 // Errorln calls Output to print to the standard logger. Arguments are handled in the manner of fmt.Println.
 func Errorln(args ...interface{}) {
 	mutex.Lock()
-	logStr := fmt.Sprint(red, "[ERROR]", reset)
+	var logStr string
+	if !fileSave {
+		logStr = fmt.Sprint(red, "[ERROR]", reset)
+	} else {
+		logStr = fmt.Sprint("[ERROR]")
+	}
 	logStr += fmt.Sprint(" ")
 	if clockAtive {
 		logStr += fmt.Sprint(time.Now().Format(logClock))

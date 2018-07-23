@@ -9,7 +9,12 @@ import (
 // Panic calls Output to print to the standard logger. Arguments are handled in the manner of fmt.Print.
 func Panic(args ...interface{}) {
 	mutex.Lock()
-	logStr := fmt.Sprint(bold, red, "[PANIC]", reset)
+	var logStr string
+	if !fileSave {
+		logStr = fmt.Sprint(bold, red, "[PANIC]", reset)
+	} else {
+		logStr = fmt.Sprint("[PANIC]")
+	}
 	logStr += fmt.Sprint(" ")
 	if clockAtive {
 		logStr += fmt.Sprint(time.Now().Format(logClock))
@@ -23,7 +28,12 @@ func Panic(args ...interface{}) {
 // Panicf calls Output to print to the standard logger. Arguments are handled in the manner of fmt.Printf.
 func Panicf(format string, args ...interface{}) {
 	mutex.Lock()
-	logStr := fmt.Sprint(bold, red, "[PANIC]", reset)
+	var logStr string
+	if !fileSave {
+		logStr = fmt.Sprint(bold, red, "[PANIC]", reset)
+	} else {
+		logStr = fmt.Sprint("[PANIC]")
+	}
 	logStr += fmt.Sprint(" ")
 	if clockAtive {
 		logStr += fmt.Sprint(time.Now().Format(logClock))
@@ -40,7 +50,12 @@ func Panicf(format string, args ...interface{}) {
 // Panicln calls Output to print to the standard logger. Arguments are handled in the manner of fmt.Println.
 func Panicln(args ...interface{}) {
 	mutex.Lock()
-	logStr := fmt.Sprint(bold, red, "[PANIC]", reset)
+	var logStr string
+	if !fileSave {
+		logStr = fmt.Sprint(bold, red, "[PANIC]", reset)
+	} else {
+		logStr = fmt.Sprint("[PANIC]")
+	}
 	logStr += fmt.Sprint(" ")
 	if clockAtive {
 		logStr += fmt.Sprint(time.Now().Format(logClock))

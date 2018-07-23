@@ -10,7 +10,12 @@ import (
 func Debug(args ...interface{}) {
 	if debugAtive {
 		mutex.Lock()
-		logStr := fmt.Sprint(green, "[DEBUG]", reset)
+		var logStr string
+		if !fileSave {
+			logStr = fmt.Sprint(green, "[DEBUG]", reset)
+		} else {
+			logStr = fmt.Sprint("[DEBUG]")
+		}
 		logStr += fmt.Sprint(" ")
 		if clockAtive {
 			logStr += fmt.Sprint(time.Now().Format(logClock))
@@ -31,7 +36,12 @@ func Debug(args ...interface{}) {
 func Debugf(format string, args ...interface{}) {
 	if debugAtive {
 		mutex.Lock()
-		logStr := fmt.Sprint(green, "[DEBUG]", reset)
+		var logStr string
+		if !fileSave {
+			logStr = fmt.Sprint(green, "[DEBUG]", reset)
+		} else {
+			logStr = fmt.Sprint("[DEBUG]")
+		}
 		logStr += fmt.Sprint(" ")
 		if clockAtive {
 			logStr += fmt.Sprint(time.Now().Format(logClock))
@@ -54,7 +64,12 @@ func Debugf(format string, args ...interface{}) {
 func Debugln(args ...interface{}) {
 	if debugAtive {
 		mutex.Lock()
-		logStr := fmt.Sprint(green, "[DEBUG]", reset)
+		var logStr string
+		if !fileSave {
+			logStr = fmt.Sprint(green, "[DEBUG]", reset)
+		} else {
+			logStr = fmt.Sprint("[DEBUG]")
+		}
 		logStr += fmt.Sprint(" ")
 		if clockAtive {
 			logStr += fmt.Sprint(time.Now().Format(logClock))

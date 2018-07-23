@@ -10,7 +10,12 @@ import (
 // Fatal calls Output to print to the standard logger. Arguments are handled in the manner of fmt.Print.
 func Fatal(args ...interface{}) {
 	mutex.Lock()
-	logStr := fmt.Sprint(bold, red, "[FATAL]", reset)
+	var logStr string
+	if !fileSave {
+		logStr = fmt.Sprint(bold, red, "[FATAL]", reset)
+	} else {
+		logStr = fmt.Sprint("[FATAL]")
+	}
 	logStr += fmt.Sprint(" ")
 	if clockAtive {
 		logStr += fmt.Sprint(time.Now().Format(logClock))
@@ -30,7 +35,12 @@ func Fatal(args ...interface{}) {
 // Fatalf calls Output to print to the standard logger. Arguments are handled in the manner of fmt.Printf.
 func Fatalf(format string, args ...interface{}) {
 	mutex.Lock()
-	logStr := fmt.Sprint(bold, red, "[FATAL]", reset)
+	var logStr string
+	if !fileSave {
+		logStr = fmt.Sprint(bold, red, "[FATAL]", reset)
+	} else {
+		logStr = fmt.Sprint("[FATAL]")
+	}
 	logStr += fmt.Sprint(" ")
 	if clockAtive {
 		logStr += fmt.Sprint(time.Now().Format(logClock))
@@ -52,7 +62,12 @@ func Fatalf(format string, args ...interface{}) {
 // Fatalln calls Output to print to the standard logger. Arguments are handled in the manner of fmt.Println.
 func Fatalln(args ...interface{}) {
 	mutex.Lock()
-	logStr := fmt.Sprint(bold, red, "[FATAL]", reset)
+	var logStr string
+	if !fileSave {
+		logStr = fmt.Sprint(bold, red, "[FATAL]", reset)
+	} else {
+		logStr = fmt.Sprint("[FATAL]")
+	}
 	logStr += fmt.Sprint(" ")
 	if clockAtive {
 		logStr += fmt.Sprint(time.Now().Format(logClock))
