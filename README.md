@@ -17,3 +17,30 @@ $ go get -u github.com/c019/logger
 ```go
 import "github.com/c019/logger"
 ```
+
+## API examples:
+
+```go
+package main
+
+import (
+	"github.com/c019/logger"
+)
+
+func init() {
+	logger.SetStatusExit(0)            // Caso queria mudar o status do os.Exit
+	logger.SetDebug(true)              // Para que os logger.Debug seja mostrado
+	logger.SetFileLocal("./teste.log") // Para que ele salve em um arquivo externo
+}
+
+func main() {
+	logger.Info("Teste")
+	logger.Debug("Teste")
+	logger.Warn("Teste")
+	logger.Error("Teste")
+	logger.Panic("Teste") // Para mostrar o logger.Fatal, comente esta linha de código
+	logger.Fatal("Teste")
+
+	logger.CloseFile()
+}
+```

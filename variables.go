@@ -1,6 +1,9 @@
 package logger
 
-import "sync"
+import (
+	"os"
+	"sync"
+)
 
 const (
 	// Cor padrao do shell
@@ -54,10 +57,17 @@ const (
 	// Background Cinza
 	cyanBg = "\033[46m"
 	// logClock Padrao de formatacao do cabecalho dos logs
-	logClock = "[2/01/2006 15:04:05]"
+	logClock = "[02/01/2006 15:04:05]"
 )
 
 var (
 	mutex sync.Mutex
+
+	// Control
 	statusExit = 1
+	debugAtive = false
+	clockAtive = true
+	fileSave   = false
+	// Config
+	fileLocal *os.File
 )

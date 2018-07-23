@@ -9,36 +9,57 @@ import (
 // Info calls Output to print to the standard logger. Arguments are handled in the manner of fmt.Print.
 func Info(args ...interface{}) {
 	mutex.Lock()
-	fmt.Print(blue, "[INFO]", reset)
-	fmt.Print(" ")
-	fmt.Print(time.Now().Format(logClock))
-	fmt.Print(" ")
-	fmt.Print(args...)
-	fmt.Print("\n")
+	logStr := fmt.Sprint(blue, "[INFO]", reset)
+	logStr += fmt.Sprint(" ")
+	if clockAtive {
+		logStr += fmt.Sprint(time.Now().Format(logClock))
+		logStr += fmt.Sprint(" ")
+	}
+	logStr += fmt.Sprint(args...)
+	logStr += fmt.Sprint("\n")
 	mutex.Unlock()
+	if fileSave {
+		save(logStr)
+	} else {
+		print(logStr)
+	}
 }
 
 // Infof calls Output to print to the standard logger. Arguments are handled in the manner of fmt.Printf.
 func Infof(format string, args ...interface{}) {
 	mutex.Lock()
-	fmt.Print(blue, "[INFO]", reset)
-	fmt.Print(" ")
-	fmt.Print(time.Now().Format(logClock))
-	fmt.Print(" ")
-	fmt.Printf(format, args...)
+	logStr := fmt.Sprint(blue, "[INFO]", reset)
+	logStr += fmt.Sprint(" ")
+	if clockAtive {
+		logStr += fmt.Sprint(time.Now().Format(logClock))
+		logStr += fmt.Sprint(" ")
+	}
+	logStr += fmt.Sprintf(format, args...)
 	if !strings.Contains(format[len(format)-1:], "\n") {
-		fmt.Print("\n")
+		logStr += fmt.Sprint("\n")
 	}
 	mutex.Unlock()
+	if fileSave {
+		save(logStr)
+	} else {
+		print(logStr)
+	}
 }
 
 // Infoln calls Output to print to the standard logger. Arguments are handled in the manner of fmt.Println.
 func Infoln(args ...interface{}) {
 	mutex.Lock()
-	fmt.Print(blue, "[INFO]", reset)
-	fmt.Print(" ")
-	fmt.Print(time.Now().Format(logClock))
-	fmt.Print(" ")
-	fmt.Println(args...)
+	logStr := fmt.Sprint(blue, "[INFO]", reset)
+	logStr += fmt.Sprint(" ")
+	if clockAtive {
+		logStr += fmt.Sprint(time.Now().Format(logClock))
+		logStr += fmt.Sprint(" ")
+	}
+	logStr += fmt.Sprintln(args...)
 	mutex.Unlock()
+	if fileSave {
+		save(logStr)
+	} else {
+		print(logStr)
+	}
 }
